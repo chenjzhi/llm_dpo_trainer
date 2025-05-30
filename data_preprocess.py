@@ -1,9 +1,14 @@
 import json
+import sys
+
 from datasets import Dataset
 from tqdm import tqdm
-import sys
+from transformers import AutoTokenizer
+
 from logging_utils import setup_logging
-from train import tokenizer
+
+model_name = "../hook_review_dpo/model"
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
 
 logger = setup_logging()
 

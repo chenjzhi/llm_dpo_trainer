@@ -3,7 +3,7 @@ from peft import TaskType, LoraConfig
 from transformers import AutoTokenizer
 from trl import DPOConfig, DPOTrainer, AutoModelForCausalLMWithValueHead
 from logging_utils import setup_logging, CustomLoggingCallback
-from data_preprocess import dataset
+from data_preprocess import dataset, model_name
 
 # Initialize logger
 logger = setup_logging()
@@ -12,7 +12,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 logger.info(f"Using device: {device}")
 
 # Load model and tokenizer
-model_name = "../hook_review_dpo/model"  # Updated to match your output
+  # Updated to match your output
 logger.info(f"Loading model and tokenizer: {model_name}")
 lora_config = LoraConfig(
     task_type=TaskType.CAUSAL_LM,
