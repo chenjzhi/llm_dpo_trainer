@@ -1,3 +1,5 @@
+import copy
+
 import torch
 from peft import TaskType, LoraConfig
 from transformers import AutoTokenizer
@@ -53,7 +55,7 @@ training_args = DPOConfig(
 # Initialize DPO trainer
 dpo_trainer = DPOTrainer(
     model=model,
-    ref_model=model,
+    ref_model=copy.deepcopy(model),
     args=training_args,
     train_dataset=dataset,
     callbacks=[CustomLoggingCallback()],
